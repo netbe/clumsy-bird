@@ -1,0 +1,20 @@
+{
+  "name": "github",
+  "version": "0.0.1",
+  "description": "Best game ever!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "OnSenFout",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^2.3.1",
+    "express": "^4.12.3",
+    "express-session": "^1.10.4",
+    "node-uuid": "^1.4.3"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
+}
