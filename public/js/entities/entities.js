@@ -72,6 +72,10 @@ var BirdEntity = me.Entity.extend({
         if (obj.type === 'pipe' || obj.type === 'ground') {
             me.device.vibrate(500);
             this.collided = true;
+
+						if (obj.url) {
+								window.open(obj.url);
+						}
         }
         // remove the hit box
         if (obj.type === 'hit') {
@@ -118,6 +122,7 @@ var PipeEntity = me.Entity.extend({
         this.body.gravity = 0;
         this.body.vel.set(-5, 0);
         this.type = 'pipe';
+				this.url = 'http://google.com';
     },
 
     update: function(dt) {
