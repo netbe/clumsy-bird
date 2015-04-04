@@ -4,7 +4,8 @@ var game = {
         steps: 0,
         start: false,
         newHiScore: false,
-        muted: false
+        muted: false,
+				issues: null
     },
 
     "onload": function() {
