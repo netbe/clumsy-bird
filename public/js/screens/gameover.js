@@ -51,15 +51,6 @@ game.GameOverScreen = me.ScreenObject.extend({
         me.game.world.addChild(this.ground1, 11);
         me.game.world.addChild(this.ground2, 11);
 
-        // share button
-        var buttonsHeight = me.video.renderer.getHeight() / 2 + 200;
-        this.share = new Share(me.video.renderer.getWidth()/2 - 180, buttonsHeight);
-        me.game.world.addChild(this.share, 12);
-
-        //tweet button
-        this.tweet = new Tweet(this.share.pos.x + 170, buttonsHeight);
-        me.game.world.addChild(this.tweet, 12);
-
         // add the dialog witht he game information
         if (game.data.newHiScore) {
             var newRect = new me.Sprite(
