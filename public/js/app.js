@@ -37,7 +37,9 @@
 								return a.length - b.length;
 						});
 
-						game.data.issues = issues;
+						game.data.issues = issues.reduce(function (a, b) {
+								return a.concat(b);
+						});
 				}
 		}
 
