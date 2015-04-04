@@ -35,8 +35,8 @@ app.use(session({
 app.use(router);
 
 app.get('/', function (req, res) {
-	console.log(req.session.accessToken);
-	res.render('app');
+	res.render('game', {githubAccessToken: req.session.accessToken});
+	res.end();
 });
 
 app.get('/oauth', function (req, res) {
