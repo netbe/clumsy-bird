@@ -55,6 +55,7 @@ document.addEventListener('level:changed', function () {
 		game.data.level++;
 		game.data.pipeCounter = 0;
 
-		var color = '#'+Math.floor(Math.random()*16777215).toString(16);
+		var color = '#'+Math.floor(Math.random()*16777216).toString(16);
 		me.game.world.addChild(new BackgroundLayer('bg', color, 1));
+		document.body.style.backgroundColor = color;
 });
