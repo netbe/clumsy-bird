@@ -5,7 +5,8 @@ var game = {
         start: false,
         newHiScore: false,
         muted: false,
-				issues: null
+				issues: null,
+				pipeCounter: 0
     },
 
     "onload": function() {

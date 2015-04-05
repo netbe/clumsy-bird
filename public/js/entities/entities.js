@@ -122,7 +122,7 @@ var PipeEntity = me.Entity.extend({
         this.body.gravity = 0;
         this.body.vel.set(-5, 0);
         this.type = 'pipe';
-				this.url = 'http://google.com';
+				this.url = '';
     },
 
     update: function(dt) {
@@ -149,13 +149,15 @@ var PipeGenerator = me.Renderable.extend({
         this.pipeFrequency = 92;
         this.pipeHoleSize = 1240;
         this.posX = me.game.viewport.width;
+				game.data.pipeCounter++;
+				this.pipeNumber = game.data.pipeCounter;
     },
 
     update: function(dt) {
         if (this.generate++ % this.pipeFrequency == 0) {
             var posY = Number.prototype.random(
-                    me.video.renderer.getHeight() - 100,
-                    200
+                me.video.renderer.getHeight() - 100,
+                200
             );
             var posY2 = posY - me.video.renderer.getHeight() - this.pipeHoleSize;
             var pipe1 = new me.pool.pull('pipe', this.posX, posY);
@@ -163,6 +165,11 @@ var PipeGenerator = me.Renderable.extend({
             var hitPos = posY - 100;
             var hit = new me.pool.pull("hit", this.posX, hitPos);
             pipe1.renderable.flipY(true);
+
+						var issueURL = game.data.issues[this.pipeNumber].html_url;
+						pipe1.url = issueURL;
+						pipe2.url = issueURL;
+						
             me.game.world.addChild(pipe1, 10);
             me.game.world.addChild(pipe2, 10);
             me.game.world.addChild(hit, 11);
