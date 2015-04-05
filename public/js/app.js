@@ -40,6 +40,8 @@
 						game.data.issues = issues.reduce(function (a, b) {
 								return a.concat(b);
 						});
+
+						document.dispatchEvent(issuesLoaded);
 				}
 		}
 
