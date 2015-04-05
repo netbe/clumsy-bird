@@ -39,7 +39,7 @@
 
 						game.data.issues = issues;
 
-						document.dispatchEvent(issuesLoaded);
+						document.dispatchEvent(onIssuesLoaded);
 				}
 		}
 

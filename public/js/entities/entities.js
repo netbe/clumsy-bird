@@ -77,8 +77,7 @@ var BirdEntity = me.Entity.extend({
 								window.open(obj.issueURL);
 						}
 
-						game.data.level = 0;
-						game.data.pipeCounter = 0;
+						document.dispatchEvent(onGameOver);
         }
         // remove the hit box
         if (obj.type === 'hit') {
