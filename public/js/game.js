@@ -6,6 +6,7 @@ var game = {
         newHiScore: false,
         muted: false,
 				issues: null,
+				level: 0,
 				pipeCounter: 0
     },
 

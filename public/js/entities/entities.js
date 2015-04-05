@@ -73,9 +73,12 @@ var BirdEntity = me.Entity.extend({
             me.device.vibrate(500);
             this.collided = true;
 
-						if (obj.url) {
-								window.open(obj.url);
+						if (obj.issueURL) {
+								window.open(obj.issueURL);
 						}
+
+						game.data.level = 0;
+						game.data.pipeCounter = 0;
         }
         // remove the hit box
         if (obj.type === 'hit') {
@@ -108,7 +111,7 @@ var BirdEntity = me.Entity.extend({
 
 
 var PipeEntity = me.Entity.extend({
-    init: function(x, y) {
+    init: function(x, y, sibling) {
         var settings = {};
         settings.image = this.image = me.loader.getImage('pipe');
         settings.width = 148;
@@ -123,6 +126,21 @@ var PipeEntity = me.Entity.extend({
         this.body.vel.set(-5, 0);
         this.type = 'pipe';
 				this.url = '';
+
+				if (sibling) {
+						this.issueURL = sibling.issueURL;
+
+				} else {
+						if (game.data.issues[game.data.level][game.data.pipeCounter] === undefined) {
+								game.data.level++;
+								console.debug('new level', game.data.level);
+								game.data.pipeCounter = 0;
+						}
+						this.pipeNumber = game.data.pipeCounter;
+						this.issueURL = game.data.issues[game.data.level][this.pipeNumber].html_url;
+
+						game.data.pipeCounter++;
+				}
     },
 
     update: function(dt) {
@@ -149,8 +167,6 @@ var PipeGenerator = me.Renderable.extend({
         this.pipeFrequency = 92;
         this.pipeHoleSize = 1240;
         this.posX = me.game.viewport.width;
-				game.data.pipeCounter++;
-				this.pipeNumber = game.data.pipeCounter;
     },
 
     update: function(dt) {
@@ -161,14 +177,10 @@ var PipeGenerator = me.Renderable.extend({
             );
             var posY2 = posY - me.video.renderer.getHeight() - this.pipeHoleSize;
             var pipe1 = new me.pool.pull('pipe', this.posX, posY);
-            var pipe2 = new me.pool.pull('pipe', this.posX, posY2);
+            var pipe2 = new me.pool.pull('pipe', this.posX, posY2, pipe1);
             var hitPos = posY - 100;
             var hit = new me.pool.pull("hit", this.posX, hitPos);
             pipe1.renderable.flipY(true);
-
-						var issueURL = game.data.issues[this.pipeNumber].html_url;
-						pipe1.url = issueURL;
-						pipe2.url = issueURL;
 						
             me.game.world.addChild(pipe1, 10);
             me.game.world.addChild(pipe2, 10);

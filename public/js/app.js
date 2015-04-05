@@ -37,9 +37,7 @@
 								return a.length - b.length;
 						});
 
-						game.data.issues = issues.reduce(function (a, b) {
-								return a.concat(b);
-						});
+						game.data.issues = issues;
 
 						document.dispatchEvent(issuesLoaded);
 				}
