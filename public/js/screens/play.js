@@ -20,7 +20,7 @@ game.PlayScreen = me.ScreenObject.extend({
         game.data.start = false;
         game.data.newHiscore = false;
 
-        me.game.world.addChild(new BackgroundLayer('bg', 1));
+        me.game.world.addChild(new BackgroundLayer('bg', '#0099cc', 1));
 
         this.ground1 = me.pool.pull('ground', 0, me.video.renderer.getHeight() - 96);
         this.ground2 = me.pool.pull('ground', me.video.renderer.getWidth(),

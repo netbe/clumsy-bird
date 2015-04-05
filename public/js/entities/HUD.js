@@ -49,14 +49,12 @@ game.HUD.ScoreItem = me.Renderable.extend({
 
 });
 
-var BackgroundLayer = me.ImageLayer.extend({
-    init: function(image, z, speed) {
-        name = image;
+var BackgroundLayer = me.ColorLayer.extend({
+    init: function(name, color, z) {
         width = 900;
         height = 600;
-        ratio = 1;
-        // call parent constructor
-        this._super(me.ImageLayer, 'init', [name, width, height, image, z, ratio]);
+
+        this._super(me.ColorLayer, 'init', [name, color, z]);
     },
 
     update: function() {

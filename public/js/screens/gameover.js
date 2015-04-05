@@ -42,7 +42,7 @@ game.GameOverScreen = me.ScreenObject.extend({
             gImageBoard
         ), 10);
 
-        me.game.world.addChild(new BackgroundLayer('bg', 1));
+        me.game.world.addChild(new BackgroundLayer('bg', '#0099cc', 1));
 
         // ground
         this.ground1 = me.pool.pull('ground', 0, me.video.renderer.getHeight() - 96);

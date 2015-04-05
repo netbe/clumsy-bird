@@ -131,9 +131,7 @@ var PipeEntity = me.Entity.extend({
 
 				} else {
 						if (game.data.issues[game.data.level][game.data.pipeCounter] === undefined) {
-								game.data.level++;
-								console.debug('new level', game.data.level);
-								game.data.pipeCounter = 0;
+								document.dispatchEvent(onLevelChanged);
 						}
 						this.pipeNumber = game.data.pipeCounter;
 						this.issueURL = game.data.issues[game.data.level][this.pipeNumber].html_url;
