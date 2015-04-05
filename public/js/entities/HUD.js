@@ -60,12 +60,24 @@ var BackgroundLayer = me.ColorLayer.extend({
     update: function() {
         if (me.input.isKeyPressed('mute')) {
             game.data.muted = !game.data.muted;
-            if (game.data.muted){
+            if (game.data.muted) {
                 me.audio.disable();
-            }else{
+            } else {
                 me.audio.enable();
             }
         }
+
+				var changeBackgroundColor = function () {
+						var color = '#'+Math.floor(Math.random()*16777216).toString(16);
+						this.color = color;
+						document.body.style.backgroundColor = color;
+				}.bind(this);
+
+				if (game.data.levelChanged) {
+						changeBackgroundColor();
+						game.data.levelChanged = false;
+				}
+				
         return true;
     }
 });

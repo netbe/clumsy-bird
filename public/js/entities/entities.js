@@ -126,13 +126,20 @@ var PipeEntity = me.Entity.extend({
         this.type = 'pipe';
 				this.url = '';
 
+				var isNewLevel = function (data) {
+						return data.issues[data.level][data.pipeCounter] === undefined	;
+				};
+
 				if (sibling) {
 						this.issueURL = sibling.issueURL;
 
 				} else {
-						if (game.data.issues[game.data.level][game.data.pipeCounter] === undefined) {
-								document.dispatchEvent(onLevelChanged);
+						if (isNewLevel(game.data)) {
+								game.data.level++;
+								game.data.pipeCounter = 0;
+								game.data.levelChanged = true;
 						}
+
 						this.pipeNumber = game.data.pipeCounter;
 						this.issueURL = game.data.issues[game.data.level][this.pipeNumber].html_url;
 
