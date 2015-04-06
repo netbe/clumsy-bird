@@ -7,14 +7,17 @@ var uuid = require('node-uuid');
 var app = express();
 var path = require('path');
 var router = express.Router();
+var url = require('url') ;
 
-app.set('REDIRECT_URI', 'http://github.dev:3000/oauth');
 app.set('CLIENT_SECRET', '9d25ed5f3348d9c4f08c8a1aed136f76044e9cca');
 app.set('CLIENT_ID', '2cc346acee436ce27f57');
 
 router.use('/$', function (req, res, next) {
 	if (req.session.accessToken == null || req.session.accessToken == undefined) {
-		res.redirect("https://github.com/login/oauth/authorize?client_id=" + app.get('CLIENT_ID') + "&redirect_uri=" + app.get('REDIRECT_URI'));
+		var hostname = req.headers.host; // hostname = 'localhost:8080'
+		var pathname = url.parse(req.url).pathname; // pathname = '/MyApp'
+		var redirectUri = 'http://' + hostname + '/oauth';
+		res.redirect("https://github.com/login/oauth/authorize?client_id=" + app.get('CLIENT_ID') + "&redirect_uri=" + redirectUri);
 		res.end();
 	} else {
 		next();
