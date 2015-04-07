@@ -11,6 +11,7 @@ var url = require('url') ;
 
 app.set('CLIENT_SECRET', '9d25ed5f3348d9c4f08c8a1aed136f76044e9cca');
 app.set('CLIENT_ID', '2cc346acee436ce27f57');
+app.set('PORT', (process.env.PORT || 3000));
 
 router.use('/$', function (req, res, next) {
 	if (req.session.accessToken == null || req.session.accessToken == undefined) {
@@ -84,5 +85,6 @@ app.get('/oauth', function (req, res) {
     reqAccessToken.end();
 });
 
-app.listen(3000);
-console.log('J\'écoute :)');
+app.listen(app.get('PORT'), function () {
+		console.log('J\'écoute sur le port '+ app.get('PORT'));
+});
