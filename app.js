@@ -9,8 +9,8 @@ var path = require('path');
 var router = express.Router();
 var url = require('url') ;
 
-app.set('CLIENT_SECRET', '9d25ed5f3348d9c4f08c8a1aed136f76044e9cca');
-app.set('CLIENT_ID', '2cc346acee436ce27f57');
+app.set('CLIENT_SECRET', (process.env.CLIENT_SECRET || '9d25ed5f3348d9c4f08c8a1aed136f76044e9cca'));
+app.set('CLIENT_ID', (process.env.CLIENT_ID || '2cc346acee436ce27f57'));
 app.set('PORT', (process.env.PORT || 3000));
 
 router.use('/$', function (req, res, next) {
