@@ -17,7 +17,7 @@ router.use('/$', function (req, res, next) {
 	if (req.session.accessToken == null || req.session.accessToken == undefined) {
 		var hostname = req.headers.host; // hostname = 'localhost:8080'
 		var pathname = url.parse(req.url).pathname; // pathname = '/MyApp'
-		var redirectUri = 'http://' + hostname + '/oauth';
+		var redirectUri = req.protocol + '://' + hostname + '/oauth';
 		res.redirect("https://github.com/login/oauth/authorize?client_id=" + app.get('CLIENT_ID') + "&redirect_uri=" + redirectUri);
 		res.end();
 	} else {
